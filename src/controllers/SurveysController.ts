@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
+import { AppError } from '../errors/AppError';
 import { SurveyRepository } from '../repositories/SurveyRepository';
 
 
@@ -14,11 +15,8 @@ class SurveyController {
       title
     });
 
-    if(usersAlreadyExists) {
-      return response.status(400).json({
-        error: "Survey already exists! - Pesquisa já existe!!",
-        
-      })
+    if (usersAlreadyExists) {
+      throw new AppError("Survey already exists! - Pesquisa já existe!!");
     }
 
     const survey = surveyRepository.create({

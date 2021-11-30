@@ -5,10 +5,10 @@ import { v4 as uuid } from 'uuid';
 class Survey {
     @PrimaryColumn()
     readonly id: string;
-    
+
     @Column()
     title: string;
-    
+
     @Column()
     description: string;
 
@@ -16,7 +16,7 @@ class Survey {
     created_at: Date;
 
     constructor() {
-        if(!this.id) {
+        if (!this.id) {
             this.id = uuid()
         }
     }
